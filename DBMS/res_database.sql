@@ -10,10 +10,10 @@ alter table ORDERS add foreign key(id_number) references DELIVERY_PARTNERS(id_nu
 alter table ORDERS add foreign key(restaurant_id) references RESTAURANT(restaurant_id);
 create table CUST_ADDRESS(address varchar(30),customer_id int,foreign key(customer_id) references CUSTOMER(customer_id) on delete cascade on update cascade);
 create table RES_ADDRESS(address varchar(30),restaurant_id int,foreign key(restaurant_id) references RESTAURANT(restaurant_id) on delete cascade on update cascade);
-create table PARTNER_LANGS(languages_spoken char(10),id_number int,primary key(languages_spoken));
-create table MENU(food_id int,food_name varchar(20),food_price float,no_of_serves int,food_description varchar(40),restaurant_id int,primary key(food_id),
+create table PARTNER_LANGS(languages_spoken char(10),id_number int,primary key(languages_spoken, id_number));
+create table MENU(food_id int,food_name varchar(50),food_price float,food_description varchar(150),restaurant_id int,primary key(food_id),
 foreign key(restaurant_id) references RESTAURANT(restaurant_id) on delete cascade on update cascade);
-create table GENRES(fooditem_type int,food_id int,primary key(fooditem_type,food_id),foreign key(food_id) references MENU(food_id) on delete cascade on update cascade);
+create table GENRES(fooditem_type varchar(30),food_id int,primary key(fooditem_type,food_id),foreign key(food_id) references MENU(food_id) on delete cascade on update cascade);
 create table RATINGS(delivery_rating float,restaurant_rating float,food_rating float,customer_id int,order_id varchar(10),restaurant_id int, 
 primary key(delivery_rating, restaurant_rating, food_rating, customer_id),foreign key (customer_id) references CUSTOMER(customer_id),
 foreign key (order_id) references ORDERS(order_id),foreign key (restaurant_id) references RESTAURANT(restaurant_id));
@@ -91,7 +91,7 @@ insert into ORDERS values("138","7:59","2022-12-25",834.00,"8:12",9,20240,1103);
 insert into ORDERS values("303","16:54","2022-12-26",1305.00,"17:14",6,20237,1109);
 insert into ORDERS values("145","11:30","2022-12-27",365.00,"12:00",4,20238,1102);
 insert into ORDERS values("194","1:20","2022-12-27",630.00,"1:45",10,20232,1101);
-insert into ORDERS values("207","11:00","2022-12-27",780.00,"11:25",6,202331109);
+insert into ORDERS values("207","11:00","2022-12-27",780.00,"11:25",6,20233,1109);
 insert into ORDERS values("281","9:30","2022-12-28",120.00,"10:12",3,20236,1101);
 insert into ORDERS values("280","5:30","2022-12-29",700.00,"5:45",2,20235,1104);
 insert into ORDERS values("142","1:30","2022-12-30",200.00,"2:01",4,20231,1107);
@@ -513,4 +513,4 @@ insert into GENRES values("Mocktails & Beverages",1357);
 insert into GENRES values("Desserts",1358);
 insert into GENRES values("Desserts",1359);
 
-select  count(o.customer_id) as num,c.customer_id,c.First_name from CUSTOMER c ,ORDERS o where num>=2;
+select count(o.customer_id) as num, c.customer_id, c.First_name from CUSTOMER c, ORDERS o where c.customer_id = o.customer_id group by c.customer_id, c.First_name having count(o.customer_id) >= 2;

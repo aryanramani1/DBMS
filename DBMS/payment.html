@@ -2,67 +2,327 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Payment Page</title>
+<title>Payment & Checkout - Foodee Express</title>
 <style>
-            a{color:white;
-          text-decoration:none;
-          font-size:35px;
-        }
-#header{
-background-image:url("https://img.myloview.com/posters/online-food-delivery-service-vector-illustration-delivery-boy-riding-red-motorbike-on-map-fast-food-delivery-design-template-for-landing-page-web-mobile-app-poster-and-flyer-700-193268944.jpg");
-background-size:contain;
-background-repeat:none;
-color:white;
-opacity:0.8;
-text-align:center;
-font-size:33px;
-padding-top:65px;
-padding-bottom:2px;
-}
-h1{background:black;
-opacity:0.90;
-}
-#nav{
-background-color:#eeeeee;
-width:650px;
-height:350px;
-}
-.next{
-text-decoration:none;}
-
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fdfdfd;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+  }
+  #header {
+    background-image: url("https://img.myloview.com/posters/online-food-delivery-service-vector-illustration-delivery-boy-riding-red-motorbike-on-map-fast-food-delivery-design-template-for-landing-page-web-mobile-app-poster-and-flyer-700-193268944.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+  #header h1 {
+    background: rgba(0, 0, 0, 0.75);
+    display: inline-block;
+    padding: 10px 40px;
+    border-radius: 12px;
+    margin: 0;
+    font-size: 40px;
+  }
+  .form-container {
+    max-width: 750px;
+    margin: 30px auto;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  }
+  .section-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: left;
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #1e293b;
+    margin-bottom: 15px;
+    border-bottom: 2px solid crimson;
+    padding-bottom: 6px;
+    display: inline-block;
+  }
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 6px;
+  }
+  .form-control {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-control:focus {
+    border-color: crimson;
+  }
+  .payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pay-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: white;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s;
+  }
+  .pay-option:hover {
+    border-color: crimson;
+    background: #fff5f5;
+  }
+  .pay-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: crimson;
+  }
+  .btn-submit {
+    width: 100%;
+    height: 55px;
+    border-radius: 28px;
+    background: crimson;
+    border: none;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .btn-submit:hover {
+    background: #b31034;
+    transform: translateY(-2px);
+  }
+  .btn-submit:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .status-alert {
+    display: none;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .alert-success {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+  }
+  .alert-error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+  }
+  .nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .back-link {
+    color: crimson;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .db-link {
+    color: #2563eb;
+    font-size: 16px;
+    font-weight: 600;
+  }
 </style>
 </head>
 <body>
+
 <div id="header">
-<h1>Checkout</h1>
+  <h1>Foodee Express - Checkout</h1>
 </div>
-<form>
-<center>
 
-<h2>Total Bill will be sent to your Email<br>Please enter your email-id.</h2><br>
-<h2>Email-id:<input type="email" name="email" autofocus="on" required></h2><br><br>
-<fieldset style="width:700px">
-    <legend><strong><u><font size="5">Delivery Details</legend></strong></u></font>
-    <div id="nav"><font size="6"><p>Name:<input type="text" name="name" title="Characters only" pattern="[a-zA-Z]+" required></p>
-    <p>Phone Number:<input type="text" name="pnum" title="ex:9876984352" pattern="[0-9]{10}" required><br>
-    Alternate Phone No.:<input type="text" name="apnum" title="ex:9876984352"></p>
-    <p>Delivery Address:<textarea rows="5" cols="30" required></textarea></p></div><br>
-<fieldset style="width:700px">
-<legend><strong><u><font size="5">Payment Methods</strong></u></font></legend>
-<div id="nav"><font size="6"><input type="radio" name="pay">Cash on Delivery<br><br></font>
-<font size="6"><a href="https://retail.onlinesbi.sbi/retail/login.htm"><input type="radio" name="pay" title="right click"></a>NET Banking<br><br></font>
-<font size="6"><a href="https://pay.google.com/intl/en_in/about/"><input type="radio" name="pay" title="right click"></a>Google Pay<br><br></font>
-<font size="6"><a href="https://pay.google.com/intl/en_in/about/"><input type="radio" name="pay" title="right click"></a>Phone Pe<br><br></font>
-<font size="6"><a href="https://pay.google.com/intl/en_in/about/"><input type="radio" name="pay" title="right click"></a>Paytm<br><br></div></font>
-</fieldset>
+<div class="form-container">
+  <div id="status-alert" class="status-alert"></div>
 
-<input type="submit" value="Submit"> <input type="reset" value="Clear"><br>
-<a href="menu.html" class="next"><---Back</a>
-<center><a href="confirm_page.html" ><div class="josh" style=" width:350px;height:50px;border-radius:25px;
-    background:crimson;
-border: 2px solid #eeeeee;"><center>Click to confirm order</center></div></a></center>
+  <form id="orderForm" action="/api/order" method="POST">
+    
+    <!-- Customer Details -->
+    <div class="section-box">
+      <div class="section-title">👤 Customer & Delivery Details</div>
+      
+      <div class="form-group">
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="e.g. Aryan Ramani" pattern="[a-zA-Z\s]+" title="Letters and spaces only" required autofocus>
+      </div>
 
-</fieldset>
-</center>
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="e.g. aryan@example.com" required>
+        <small style="color: #64748b;">(Order receipt will be saved in MySQL database with this email)</small>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div class="form-group">
+          <label for="pnum">Primary Phone (10 digits) *</label>
+          <input type="tel" id="pnum" name="pnum" class="form-control" placeholder="9876543210" pattern="[0-9]{10}" title="Exactly 10 digits" required>
+        </div>
+        <div class="form-group">
+          <label for="apnum">Alternate Phone (Optional)</label>
+          <input type="tel" id="apnum" name="apnum" class="form-control" placeholder="9876543211">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Delivery Address *</label>
+        <textarea id="address" name="address" rows="3" class="form-control" placeholder="House/Flat No, Street, Landmark, Area..." required></textarea>
+      </div>
+    </div>
+
+    <!-- Payment Methods -->
+    <div class="section-box">
+      <div class="section-title">💳 Select Payment Method</div>
+      <div class="payment-options">
+        <label class="pay-option">
+          <input type="radio" name="pay" value="Cash on Delivery" checked>
+          <span>💵 Cash on Delivery</span>
+        </label>
+        <label class="pay-option">
+          <input type="radio" name="pay" value="Google Pay">
+          <span>🔵 Google Pay (UPI)</span>
+        </label>
+        <label class="pay-option">
+          <input type="radio" name="pay" value="Phone Pe">
+          <span>🟣 PhonePe (UPI)</span>
+        </label>
+        <label class="pay-option">
+          <input type="radio" name="pay" value="Paytm">
+          <span>🟦 Paytm (Wallet / UPI)</span>
+        </label>
+        <label class="pay-option">
+          <input type="radio" name="pay" value="Net Banking">
+          <span>🏦 Net Banking</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Hidden Amount and Restaurant -->
+    <input type="hidden" id="amount" name="amount" value="450.00">
+    <input type="hidden" id="restaurant_id" name="restaurant_id" value="1101">
+
+    <!-- Order Summary Badge -->
+    <div style="background: #f1f5f9; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-size: 18px; color: #334155;"><strong>Order Total:</strong></span>
+      <span style="font-size: 24px; color: crimson; font-weight: bold;" id="display-amount">₹450.00</span>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" id="submitBtn" class="btn-submit">
+      <span>🛍️ Click to Confirm Order & Save to SQL</span>
+    </button>
+  </form>
+
+  <div class="nav-links">
+    <a href="menu.html" class="back-link">&larr; Back to Menu</a>
+    <a href="orders_view.html" class="db-link" target="_blank">📊 View Live MySQL Database Records</a>
+  </div>
+</div>
+
+<script>
+  // Try to load cart amount from localStorage if available
+  try {
+    const savedTotal = localStorage.getItem('cartTotal');
+    if (savedTotal && !isNaN(savedTotal) && Number(savedTotal) > 0) {
+      document.getElementById('amount').value = savedTotal;
+      document.getElementById('display-amount').innerText = '₹' + Number(savedTotal).toFixed(2);
+    }
+  } catch(e) {}
+
+  const form = document.getElementById('orderForm');
+  const alertBox = document.getElementById('status-alert');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>⏳ Saving to MySQL Database...</span>';
+    alertBox.style.display = 'none';
+
+    // Collect form data
+    const formData = new FormData(form);
+    const payload = {};
+    formData.forEach((val, key) => { payload[key] = val; });
+
+    try {
+      const response = await fetch('/api/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alertBox.className = 'status-alert alert-success';
+        alertBox.innerHTML = `✅ <strong>Success!</strong> ${result.message}<br>Order ID: <strong>#${result.order_id}</strong> | Delivery Partner: <strong>${result.partner_name}</strong>`;
+        alertBox.style.display = 'block';
+
+        // Save order info to sessionStorage
+        sessionStorage.setItem('lastOrder', JSON.stringify(result));
+
+        // Redirect after brief delay
+        setTimeout(() => {
+          window.location.href = `confirm_page.html?order_id=${result.order_id}&customer_name=${encodeURIComponent(result.customer_name)}&partner_name=${encodeURIComponent(result.partner_name)}&partner_phone=${result.partner_phone}&amount=${result.amount}&delivery_time=${result.delivery_time}`;
+        }, 1200);
+
+      } else {
+        throw new Error(result.error || result.message || 'Failed to place order');
+      }
+
+    } catch (err) {
+      console.error(err);
+      alertBox.className = 'status-alert alert-error';
+      alertBox.innerHTML = `❌ <strong>Database Error:</strong> ${err.message}<br>Make sure MySQL is running in XAMPP!`;
+      alertBox.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>🛍️ Click to Confirm Order & Save to SQL</span>';
+    }
+  });
+</script>
+
 </body>
 </html>
